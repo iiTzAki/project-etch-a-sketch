@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-text { 
+    font-size: 36px;
+    font-family: Impact, 'Arial Narrow Bold', sans-serif;
+}
+
+.grid-container { 
+    height: 750px;
+    width: 750px;
+    border: 1px solid black;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.button { 
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
