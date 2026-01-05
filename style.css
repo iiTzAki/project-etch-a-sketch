@@ -34,4 +34,11 @@ body {
     border-radius: 6px;
     font-size: 16px;
     cursor: pointer;
+    background-color: aliceblue;
+}
+
+.button.active { 
+    background-color: black;
+    color: lightblue;
+    border: 2px solid cyan;
 }

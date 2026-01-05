@@ -2,7 +2,6 @@ const getGridContainer = document.querySelector(".grid-container");
 
 const getResetPadBtn = document.querySelector("#reset-button");
 getResetPadBtn.addEventListener("click", () => {
-    isColorPenTrue = false; 
     getGridContainer.innerHTML = ""; 
     createGridDivs(16);
 })
@@ -10,13 +9,14 @@ getResetPadBtn.addEventListener("click", () => {
 let isColorPenTrue = false;
 
 const getDynamicColorBtn = document.querySelector("#dynamic-color-btn");
-getDynamicColorBtn.addEventListener("click", () => { 
+getDynamicColorBtn.addEventListener("click", (event) => {
     isColorPenTrue = !isColorPenTrue; 
+    event.target.classList.toggle("active");
 })
 
 getGridContainer.addEventListener("mouseover", (event) => {
 
-    if (isColorPenTrue === true && event.target.classList.contains("grid-box")) { 
+    if (isColorPenTrue && event.target.classList.contains("grid-box")) { 
         const randomColor = () => Math.floor(Math.random() * 256);
         event.target.style["background-color"] = `rgb(${randomColor()}, ${randomColor()}, ${randomColor()})`;
 
