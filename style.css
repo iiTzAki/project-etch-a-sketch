@@ -21,6 +21,14 @@ body {
     margin-bottom: 30px;
 }
 
+.button-container { 
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 750px;
+}
+
+
 .button { 
     padding: 12px;
     border-radius: 6px;
