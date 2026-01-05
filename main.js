@@ -1,29 +1,55 @@
 const getGridContainer = document.querySelector(".grid-container");
 
-const getResetPadBtn = document.querySelector("#reset-button");
-getResetPadBtn.addEventListener("click", () => {
+
+getGridContainer.addEventListener("mouseover", (event) => {
+
+    const target = event.target;
+    const getRandomColor = () => Math.floor(Math.random() * 256);
+
+    if (!target.classList.contains("grid-box")) return;
+
+    if (isOpacityOn) {
+    
+        if (!target.dataset.countOpacity) {
+            target.dataset.countOpacity = 0.1; 
+        } else {
+            target.dataset.countOpacity = Math.min(parseFloat(target.dataset.countOpacity) + 0.1, 1);
+        } 
+
+        target.style['background-color'] = 
+            `rgba(${getRandomColor()}, ${getRandomColor()}, ${getRandomColor()}, ${target.dataset.countOpacity})`;
+
+    } else { 
+        const finalColor = isColorPenOn
+            ? `rgb(${getRandomColor()}, ${getRandomColor()}, ${getRandomColor()})`
+            : "black";
+
+        target.style["background-color"] = finalColor;
+    }
+});
+
+
+const getResetPadBtn = document.querySelector("#reset-button").addEventListener("click", () => {
     getGridContainer.innerHTML = ""; 
     createGridDivs(16);
 })
 
-let isColorPenTrue = false;
 
-const getDynamicColorBtn = document.querySelector("#dynamic-color-btn");
-getDynamicColorBtn.addEventListener("click", (event) => {
-    isColorPenTrue = !isColorPenTrue; 
+let isColorPenOn = false;
+let isOpacityOn = false;
+
+
+const getOpacityBtn = document.querySelector("#opacity-btn").addEventListener("click", (event) => { 
+    isOpacityOn = !isOpacityOn;
     event.target.classList.toggle("active");
 })
 
-getGridContainer.addEventListener("mouseover", (event) => {
+const getDynamicColorBtn = document.querySelector("#dynamic-color-btn").addEventListener("click", (event) => {
+    isColorPenOn = !isColorPenOn; 
+    event.target.classList.toggle("active");
+})
 
-    if (isColorPenTrue && event.target.classList.contains("grid-box")) { 
-        const randomColor = () => Math.floor(Math.random() * 256);
-        event.target.style["background-color"] = `rgb(${randomColor()}, ${randomColor()}, ${randomColor()})`;
 
-    } else if (event.target.classList.contains("grid-box")) { 
-        event.target.style["background-color"] = "black";
-    };
-});
 
 const getResetGridBtn = document.querySelector("#new-grid-button");
 getResetGridBtn.addEventListener("click", () => {
@@ -37,6 +63,8 @@ getResetGridBtn.addEventListener("click", () => {
     createGridDivs(squareVal)
 })
 
+
+
 function createGridDivs(squareVal) {
 
     getGridContainer.innerHTML = "";
@@ -46,15 +74,15 @@ function createGridDivs(squareVal) {
     for (let i = 0; i < squareVal * squareVal; i++) { 
         const newGridDivs = document.createElement("div"); 
         newGridDivs.classList.add("grid-box");
+
         newGridDivs.style['height'] = `${squareSize}px`;
         newGridDivs.style['width'] = `${squareSize}px`;
         newGridDivs.style['boxSizing'] = "border-box";
-        newGridDivs.style['border'] = "0.1px solid black"; 
+        newGridDivs.style['border'] = "0.1px solid black";
+
         getGridContainer.appendChild(newGridDivs);
     };
 };
-
-
 
 createGridDivs(16);
 
