@@ -1,7 +1,13 @@
 const getGridContainer = document.querySelector(".grid-container");
 
-const getResetButton = document.querySelector("#reset-button");
-getResetButton.addEventListener("click", () => {
+const getResetPadBtn = document.querySelector("#reset-button");
+getResetPadBtn.addEventListener("click", () => { 
+    getGridContainer.innerHTML = ""; 
+    createGridDivs(16);
+})
+
+const getResetGridBtn = document.querySelector("#new-grid-button");
+getResetGridBtn.addEventListener("click", () => {
     const squareVal = Number(prompt("Reset the pad: Pick a number between 1-100")); 
 
     if (squareVal <= 0 || squareVal >= 100) {
